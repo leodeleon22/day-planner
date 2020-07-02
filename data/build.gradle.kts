@@ -1,38 +1,53 @@
 plugins {
-    id(Plugins.androidLibrary)
-    id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinAndroidExtensions)
+    androidLibrary()
+    kotlinAndroid()
+    kotlinKapt()
+    kotlinAndroidExt()
+    ktlint(false)
 }
 
 android {
-    compileSdkVersion (BuildVersions.target_sdk)
-    buildToolsVersion = BuildVersions.build_version
+    compileSdkVersion(ProjectConfig.target_sdk)
+    buildToolsVersion = ProjectConfig.build_version
 
     defaultConfig {
-        minSdkVersion(BuildVersions.min_sdk)
-        targetSdkVersion(BuildVersions.target_sdk)
+        minSdkVersion(ProjectConfig.min_sdk)
+        targetSdkVersion(ProjectConfig.target_sdk)
         versionCode = 1
         versionName = "1.0"
 
         consumerProguardFiles("consumer-rules.pro")
+
+        buildConfigField("String", "PLANDAY_CLIENT_ID", property("PLANDAY_CLIENT_ID").toString())
+        buildConfigField("String", "PLANDAY_REFRESH_TOKEN", property("PLANDAY_REFRESH_TOKEN").toString())
     }
 
     buildTypes {
+
         getByName("release") {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }
-
 }
 
 dependencies {
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation(Deps.Kotlin.stdlib)
-    implementation(Deps.Net.okhttp)
-    api(Deps.Net.retrofit)
-    implementation(Deps.Net.retrofitMoshi)
-    implementation(Deps.Net.retrofitRxJava)
-    api(Deps.Jetpack.paging)
-    api(Deps.Rx.rxjava)
+    setOf(
+        Deps.Kotlin.stdlib,
+        Deps.Splits.prefs,
+        Deps.Google.dagger,
+        Deps.Utils.timber
+    ).forEach(::implementation)
+    setOf(
+        Deps.Net.retrofit,
+        Deps.Net.okhttp,
+        Deps.Jetpack.paging,
+        Deps.Jetpack.pagingRx,
+        Deps.Rx.rxjava,
+        Deps.Rx.rxkotlin,
+        Deps.Net.retrofitMoshi
+    ).forEach(::api)
+    setOf(
+        Deps.Kapt.dagger
+    ).forEach(::kapt)
 }

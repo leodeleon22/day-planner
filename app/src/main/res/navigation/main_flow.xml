@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_flow">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_flow"
+    app:startDestination="@id/mainFragment">
 
+    <fragment
+        android:id="@+id/employeesFragment"
+        android:name="com.leodeleon.planner.features.employees.EmployeesFragment"
+        android:label="EmployeesFragment" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.leodeleon.planner.features.main.MainFragment"
+        android:label="MainFragment">
+        <action
+            android:id="@+id/action_mainFragment_to_employeesFragment"
+            app:destination="@id/employeesFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

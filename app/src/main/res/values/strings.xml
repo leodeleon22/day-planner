@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">Bootstrap</string>
+    <string name="app_name">Day Planner</string>
+    <string name="error">Error</string>
+    <string name="error_authentication">The authentication has failed.</string>
+    <string name="error_loading_data">There was an error loading the data.</string>
 </resources>

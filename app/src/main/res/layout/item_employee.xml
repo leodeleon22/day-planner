@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewData"
+            type="com.leodeleon.data.domain.EmployeeItem" />
+
+        <variable
+            name="listener"
+            type="com.leodeleon.planner.features.employees.EmployeeItemClickListener" />
+    </data>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:onClick="@{() -> listener.onItemClick(viewData)}"
+        android:paddingHorizontal="16dp"
+        android:text="@{viewData.firstName + ` ` + viewData.lastName}"
+        tools:text="Jon Ive" />
+
+</layout>
