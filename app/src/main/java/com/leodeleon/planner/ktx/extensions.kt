@@ -21,27 +21,3 @@ inline fun <T> LifecycleOwner.observeEvent(
 ): Observer<Event<T>> = EventObserver<T> {
     it?.let(observer)
 }.also { liveData.observe(this, it) }
-
-@ExperimentalCoroutinesApi
-fun Context.hasInternetConnection() = callbackFlow {
-    val callback = object : ConnectivityManager.NetworkCallback() {
-        override fun onAvailable(network: Network) {
-            val capabilities = connectivityManager.getNetworkCapabilities(network)
-            val connected = capabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-                ?: false
-            offer(connected)
-        }
-
-        override fun onLost(network: Network) {
-            offer(false)
-        }
-    }
-    connectivityManager.registerNetworkCallback(NetworkRequest.Builder()
-        .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
-        .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
-        .build(), callback)
-
-    awaitClose {
-        connectivityManager.unregisterNetworkCallback(callback)
-    }
-}
