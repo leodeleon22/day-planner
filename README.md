@@ -6,10 +6,10 @@ Employee management app that that uses the [Planday API](https://openapi.planday
 Obtain the refresh token and client id and put them in your local **gradle.properties** file:
 
 Windows: 
-`C:\Users\\**YOUR-USERNAME**\\.gradle\gradle.properties`
+`C:\Users\YOUR-USERNAME\.gradle\gradle.properties`
 
 Mac: 
-`Users/**YOUR-USERNAME**/.gradle/gradle.properties`
+`Users/YOUR-USERNAME/.gradle/gradle.properties`
 
 	...
 	PLANDAY_CLIENT_ID="YOUR-CLIENT_ID-HERE"
