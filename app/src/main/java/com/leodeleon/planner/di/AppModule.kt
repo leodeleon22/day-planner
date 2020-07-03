@@ -1,17 +1,20 @@
 package com.leodeleon.planner.di
 
+import com.leodeleon.data.arch.ICoroutineContextProvider
 import com.leodeleon.data.arch.ISchedulerProvider
-import com.leodeleon.data.local.PreferenceManager
-import com.leodeleon.data.remote.AuthService
-import com.leodeleon.data.remote.HRService
 import com.leodeleon.data.remote.HeaderInterceptor
+import com.leodeleon.data.remote.TokenAuthenticator
+import com.leodeleon.data.remote.api.AuthService
+import com.leodeleon.data.remote.api.HRService
 import com.leodeleon.data.repos.AuthRepository
 import com.leodeleon.data.repos.EmployeeRepository
+import com.leodeleon.planner.arch.CoroutineContextProvider
 import com.leodeleon.planner.arch.SchedulerProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import okhttp3.Authenticator
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -48,7 +51,16 @@ object AppModule {
     @Singleton
     @Provides
     fun providesHeaderInterceptor(): HeaderInterceptor {
-        return HeaderInterceptor(PreferenceManager.getToken())
+        return HeaderInterceptor()
+    }
+
+    @Singleton
+    @Provides
+    fun providesTokenAuthenticator(
+        repository: AuthRepository,
+        dispatchers: ICoroutineContextProvider
+    ): Authenticator {
+        return TokenAuthenticator(repository, dispatchers)
     }
 
     @Singleton
@@ -65,11 +77,16 @@ object AppModule {
     @Singleton
     @AuthClient
     @Provides
-    fun provideClient(logger: HttpLoggingInterceptor, header: HeaderInterceptor): OkHttpClient {
+    fun provideClient(
+        logger: HttpLoggingInterceptor,
+        header: HeaderInterceptor,
+        authenticator: Authenticator
+    ): OkHttpClient {
         return OkHttpClient()
             .newBuilder()
             .addInterceptor(header)
             .addInterceptor(logger)
+            .authenticator(authenticator)
             .build()
     }
 
@@ -110,5 +127,11 @@ object AppModule {
     @Provides
     fun provideSchedulers(): ISchedulerProvider {
         return SchedulerProvider()
+    }
+
+    @Singleton
+    @Provides
+    fun provideDispatchers(): ICoroutineContextProvider {
+        return CoroutineContextProvider()
     }
 }

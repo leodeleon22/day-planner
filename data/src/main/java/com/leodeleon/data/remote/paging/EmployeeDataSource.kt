@@ -1,9 +1,10 @@
-package com.leodeleon.data.remote
+package com.leodeleon.data.remote.paging
 
 import androidx.paging.PositionalDataSource
 import com.leodeleon.data.arch.ISchedulerProvider
 import com.leodeleon.data.arch.Result
 import com.leodeleon.data.domain.EmployeeItem
+import com.leodeleon.data.remote.Constants
 import com.leodeleon.data.repos.EmployeeRepository
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo

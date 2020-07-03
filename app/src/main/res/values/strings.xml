@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">Day Planner</string>
     <string name="error">Error</string>
+    <string name="departments">Departments</string>
+    <string name="name">Name</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="submit">Submit</string>
     <string name="error_authentication">The authentication has failed.</string>
     <string name="error_loading_data">There was an error loading the data.</string>
+    <string name="error_updating">There was an error. Please try again.</string>
+    <string name="employee_updated">Employee updated</string>
 </resources>

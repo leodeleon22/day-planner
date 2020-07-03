@@ -4,7 +4,7 @@ import com.leodeleon.data.BuildConfig
 import com.leodeleon.data.arch.Result
 import com.leodeleon.data.entities.Session
 import com.leodeleon.data.ktx.toResult
-import com.leodeleon.data.remote.AuthService
+import com.leodeleon.data.remote.api.AuthService
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(

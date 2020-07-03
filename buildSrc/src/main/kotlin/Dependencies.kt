@@ -5,6 +5,7 @@ object Versions {
     const val lifecycle = "2.3.0-alpha05"
     const val hilt = "2.28.1-alpha"
     const val dagger = "2.28"
+    const val moshi = "1.9.3"
 }
 
 object Classpath {
@@ -62,6 +63,7 @@ object Deps {
         const val retrofitRxJava = "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT"
         const val okhttp = "com.squareup.okhttp3:okhttp:$OKHTTP"
         const val okhttpLogging = "com.squareup.okhttp3:logging-interceptor:$OKHTTP"
+        const val moshi = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
     }
 
     object Test {
@@ -97,5 +99,7 @@ object Deps {
         const val hilt = "androidx.hilt:hilt-compiler:1.0.0-alpha01"
         const val databinding = "com.android.databinding:compiler:${Versions.android_plugin}"
         const val dagger = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+        const val moshi = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
+
     }
 }

@@ -13,7 +13,7 @@ import com.leodeleon.data.arch.Result
 import com.leodeleon.data.arch.isError
 import com.leodeleon.data.domain.EmployeeItem
 import com.leodeleon.data.remote.Constants
-import com.leodeleon.data.remote.EmployeeDataSourceFactory
+import com.leodeleon.data.remote.paging.EmployeeDataSourceFactory
 import com.leodeleon.data.repos.EmployeeRepository
 import com.leodeleon.planner.BR
 import com.leodeleon.planner.R
@@ -71,7 +71,7 @@ class EmployeesViewModel
 
     override fun onCleared() {
         super.onCleared()
-        subscriptions.dispose()
+        subscriptions.clear()
     }
 
     override fun onItemClick(employeeItem: EmployeeItem) {

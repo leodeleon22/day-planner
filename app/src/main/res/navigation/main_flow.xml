@@ -7,15 +7,24 @@
     <fragment
         android:id="@+id/employeesFragment"
         android:name="com.leodeleon.planner.features.employees.EmployeesFragment"
-        android:label="EmployeesFragment" />
+        android:label="Employees">
+        <action
+            android:id="@+id/action_employeesFragment_to_editFragment"
+            app:destination="@id/editFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.leodeleon.planner.features.main.MainFragment"
-        android:label="MainFragment">
+        android:label="Day Planner">
         <action
             android:id="@+id/action_mainFragment_to_employeesFragment"
             app:destination="@id/employeesFragment"
+            app:launchSingleTop="true"
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.leodeleon.planner.features.edit.EditFragment"
+        android:label="Edit Employee" />
 </navigation>

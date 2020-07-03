@@ -1,4 +1,4 @@
-package com.leodeleon.data.remote
+package com.leodeleon.data.remote.paging
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource

@@ -1,4 +1,4 @@
-package com.leodeleon.data.remote
+package com.leodeleon.data.remote.api
 
 import com.leodeleon.data.entities.Session
 import retrofit2.Response

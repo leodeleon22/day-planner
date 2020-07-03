@@ -3,7 +3,9 @@ package com.leodeleon.data.entities
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Department(
+data class EmployeeDetails(
     val id: Int,
-    val name: String
+    val firstName: String,
+    val lastName: String,
+    val gender: Gender?
 )

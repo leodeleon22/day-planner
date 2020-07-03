@@ -34,6 +34,7 @@ android {
 dependencies {
     setOf(
         Deps.Kotlin.stdlib,
+        Deps.Kotlin.coroutines,
         Deps.Splits.prefs,
         Deps.Google.dagger,
         Deps.Utils.timber
@@ -45,9 +46,11 @@ dependencies {
         Deps.Jetpack.pagingRx,
         Deps.Rx.rxjava,
         Deps.Rx.rxkotlin,
+        Deps.Net.moshi,
         Deps.Net.retrofitMoshi
     ).forEach(::api)
     setOf(
-        Deps.Kapt.dagger
+        Deps.Kapt.dagger,
+        Deps.Kapt.moshi
     ).forEach(::kapt)
 }

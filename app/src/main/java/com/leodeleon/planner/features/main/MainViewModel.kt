@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.leodeleon.data.arch.Result
 import com.leodeleon.data.local.PreferenceManager
-import com.leodeleon.data.remote.HeaderInterceptor
 import com.leodeleon.data.repos.AuthRepository
 import com.leodeleon.planner.R
 import com.leodeleon.planner.arch.Event
@@ -37,8 +36,7 @@ sealed class MainEvent {
 class MainViewModel
 @ViewModelInject
 constructor(
-    private val repository: AuthRepository,
-    private val headerInterceptor: HeaderInterceptor
+    private val repository: AuthRepository
 ) : ViewModel() {
 
     private val _effects = MutableLiveData<Event<MainEffect>>()
@@ -73,7 +71,6 @@ constructor(
                 is Result.Success -> {
                     val token = result.data.access_token
                     PreferenceManager.setToken(token)
-                    headerInterceptor.token = token
                     if (state.value == null) {
                         _effects.postValue(Event(MainEffect.NextPage))
                     }

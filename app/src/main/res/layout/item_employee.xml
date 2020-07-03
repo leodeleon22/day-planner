@@ -11,18 +11,55 @@
         <variable
             name="listener"
             type="com.leodeleon.planner.features.employees.EmployeeItemClickListener" />
+
+        <import type="com.leodeleon.planner.features.employees.EmployeeTextHelper" />
     </data>
 
-    <TextView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:minHeight="124dp"
+
         android:background="?selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center_vertical"
-        android:onClick="@{() -> listener.onItemClick(viewData)}"
-        android:paddingHorizontal="16dp"
-        android:text="@{viewData.firstName + ` ` + viewData.lastName}"
-        tools:text="Jon Ive" />
+        android:onClick="@{() -> listener.onItemClick(viewData)}">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewData.firstName + ` ` + viewData.lastName}"
+                tools:text="Jon Ive" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/departments" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{EmployeeTextHelper.getDepartmentNames(viewData)}"
+                tools:text="Design, Marketing" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 
 </layout>
