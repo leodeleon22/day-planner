@@ -52,7 +52,6 @@ class EmployeesViewModel
     init {
         val config = PagedList.Config.Builder()
             .setPageSize(Constants.EMPLOYEES_PAGE_SIZE)
-            .setEnablePlaceholders(false)
             .build()
 
         val sourceFactory = EmployeeDataSourceFactory(repository, resultSubject, schedulers, subscriptions)

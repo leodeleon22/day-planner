@@ -26,6 +26,7 @@ object Deps {
         const val fragment = "androidx.fragment:fragment:1.3.0-alpha06"
         const val activity = "androidx.activity:activity:1.2.0-alpha06"
         const val cardview = "androidx.cardview:cardview:1.0.0"
+        const val recycler = "androidx.recyclerview:recyclerview:1.2.0-alpha04"
         const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
         const val viewModelState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.lifecycle}"
         const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
