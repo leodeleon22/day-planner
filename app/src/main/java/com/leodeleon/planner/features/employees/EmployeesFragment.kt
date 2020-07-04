@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView.Adapter.StateRestorationPolicy
 import com.leodeleon.planner.R
 import com.leodeleon.planner.databinding.FragmentEmployeesBinding
 import com.leodeleon.planner.features.main.StateProvider
@@ -35,6 +36,8 @@ class EmployeesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        recycler.adapter?.stateRestorationPolicy = StateRestorationPolicy.PREVENT_WHEN_EMPTY
 
         observeEvent(viewModel.effects) {
             when (it) {

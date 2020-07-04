@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -31,6 +32,8 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+<!--                app:isVisible="@{viewData == null}"-->
+
             <TextView
                 style="@style/TextAppearance.AppCompat.Caption"
                 android:layout_width="wrap_content"
@@ -40,8 +43,10 @@
             <TextView
                 style="@style/TextAppearance.AppCompat.Headline"
                 android:layout_width="wrap_content"
+                android:minWidth="200dp"
                 android:layout_height="wrap_content"
-                android:text="@{viewData.firstName + ` ` + viewData.lastName}"
+                android:text="@{EmployeeTextHelper.getName(viewData)}"
+                app:loading="@{viewData == null}"
                 tools:text="Jon Ive" />
 
             <TextView
@@ -55,7 +60,9 @@
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="130dp"
                 android:text="@{EmployeeTextHelper.getDepartmentNames(viewData)}"
+                app:loading="@{viewData == null}"
                 tools:text="Design, Marketing" />
 
         </LinearLayout>

@@ -1,5 +1,6 @@
 package com.leodeleon.planner.di
 
+import android.content.Context
 import com.leodeleon.data.arch.ICoroutineContextProvider
 import com.leodeleon.data.arch.ISchedulerProvider
 import com.leodeleon.data.remote.HeaderInterceptor
@@ -14,7 +15,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.Authenticator
+import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -73,6 +76,13 @@ object AppModule {
             .build()
     }
 
+    @Singleton
+    @Provides
+    fun provideCache(@ApplicationContext context: Context): Cache {
+        val cacheSize = 10 * 1024 * 1024
+        return Cache(context.cacheDir, cacheSize.toLong())
+    }
+
     @ExperimentalSplittiesApi
     @Singleton
     @AuthClient
@@ -80,10 +90,12 @@ object AppModule {
     fun provideClient(
         logger: HttpLoggingInterceptor,
         header: HeaderInterceptor,
-        authenticator: Authenticator
+        authenticator: Authenticator,
+        cache: Cache
     ): OkHttpClient {
         return OkHttpClient()
             .newBuilder()
+            .cache(cache)
             .addInterceptor(header)
             .addInterceptor(logger)
             .authenticator(authenticator)

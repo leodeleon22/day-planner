@@ -14,6 +14,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:diffConfig="@{viewModel.itemDiff}"
+            app:itemBinding="@{viewModel.itemBinding}"
+            app:items="@{viewModel.items}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_employee" />
+
         <ProgressBar
             android:id="@+id/progress"
             style="?android:attr/progressBarStyleLarge"
@@ -22,14 +32,5 @@
             android:layout_gravity="center"
             android:indeterminate="true"
             app:isVisible="@{viewModel.loading}" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:diffConfig="@{viewModel.itemDiff}"
-            app:itemBinding="@{viewModel.itemBinding}"
-            app:items="@{viewModel.items}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_employee" />
     </FrameLayout>
 </layout>

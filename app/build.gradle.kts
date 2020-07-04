@@ -65,6 +65,7 @@ dependencies {
         Deps.Jetpack.fragment,
         Deps.Jetpack.activity,
         Deps.Jetpack.cardview,
+        Deps.Jetpack.recycler,
         Deps.Jetpack.viewModel,
         Deps.Jetpack.viewModelState,
         Deps.Jetpack.liveData,
