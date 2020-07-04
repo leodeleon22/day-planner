@@ -1,6 +1,5 @@
 object Versions {
     const val kotlin = "1.3.72"
-    const val ktlint = "9.2.1"
     const val android_plugin = "4.0.0"
     const val lifecycle = "2.3.0-alpha05"
     const val hilt = "2.28.1-alpha"
@@ -11,9 +10,7 @@ object Versions {
 object Classpath {
     const val android = "com.android.tools.build:gradle:${Versions.android_plugin}"
     const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
-    const val versions = "com.github.ben-manes:gradle-versions-plugin:0.28.0"
     const val hilt = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
-    const val ktlint = "org.jlleitschuh.gradle:ktlint-gradle:${Versions.ktlint}"
 }
 
 object Deps {
@@ -101,6 +98,5 @@ object Deps {
         const val databinding = "com.android.databinding:compiler:${Versions.android_plugin}"
         const val dagger = "com.google.dagger:dagger-compiler:${Versions.dagger}"
         const val moshi = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
-
     }
 }
